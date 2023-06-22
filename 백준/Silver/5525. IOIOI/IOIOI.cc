@@ -2,25 +2,44 @@
 #include <string>
 
 using namespace std;
-int n, m, cntt;
+
+int n, m;
 string s;
+int answer = 0;
+
+bool checkIOI(int idx) {
+	if (s[idx + 1] == 'O' && s[idx + 2] == 'I') {
+		return true;
+	}
+	return false;
+}
 
 int main() {
-	cin >> n >> m >> s;
-	for (int i = 0; i < s.length(); i++)
-	{
-		int countt = 0;
+	ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+
+	cin >> n >> m;
+	cin >> s;
+
+	for (int i = 0; i < m - 2; i++) {
 		if (s[i] == 'I') {
-			while (s[i + 1] == 'O' && s[i + 2] == 'I') {
-				i += 2;
-				countt++;
-				if (countt == n) {
-					cntt++;
-					countt--;
+			int partLen = 0;
+			while (true) {
+				if ((i < m - 2) && checkIOI(i)) {
+					partLen++;
+					i += 2;
+					//cout << "partLen : " << partLen << endl;
+					//cout << "i : " << i << endl;
+				}
+				else {
+					if (partLen >= n) answer += partLen - n + 1;
+					//answer += partLen - n + 1;
+					break;
 				}
 			}
-			countt = 0;
 		}
 	}
-	cout<<cntt<<endl;
+
+	cout << answer;
+
+	return 0;
 }
