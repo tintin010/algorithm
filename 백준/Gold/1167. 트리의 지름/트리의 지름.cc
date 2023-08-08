@@ -11,7 +11,7 @@ int n, anss, temp;
 int vis[100001];
 
 void dfs(int a, int len) {
-	vis[a]++;
+	vis[a] = 1;
 
 	if (anss < len) {
 		temp = a;
@@ -22,10 +22,10 @@ void dfs(int a, int len) {
 		int n = v[a][i].first;
 		int dis = v[a][i].second;
 		if (vis[n])continue;
-		//vis[n]++;
+		//vis[n] = 1;
 		//cout << "vis[n] : " << vis[n] << endl;
 		dfs(n, len + dis);
-		//vis[n]--;
+		//vis[n] = 0;
 	}
 }
 
@@ -42,7 +42,6 @@ int main() {
 			v[ed].push_back({ st,dis });
 		}
 	}
-	//vis[1]++;
 	dfs(1, 0);
 	anss = 0;
 	for (int i = 1;i <= n;i++)vis[i] = 0;
