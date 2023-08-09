@@ -49,7 +49,7 @@ int main() {
 			cin >> st >> ed >> cost;
 			v.push_back({ { st, ed}, -cost });
 		}
-		dis[1] = 0;
+		//dis[1] = 0;
 		for (int i = 0;i < n - 1;i++) {
 			for (int j = 0;j < v.size();j++) {
 				int from = v[j].first.first;
