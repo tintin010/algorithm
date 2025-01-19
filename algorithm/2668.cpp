@@ -1,4 +1,4 @@
-//숫자고르기
+//숫자고르기 골5 그래프 이론론
 
 #include <iostream>
 #include <cstring>

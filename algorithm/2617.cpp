@@ -1,4 +1,4 @@
-// 구슬 찾기
+// 구슬 찾기 골4 그래프 이론론
 
 #include <iostream>
 #include <cstring>

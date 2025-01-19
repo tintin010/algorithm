@@ -1,8 +1,8 @@
 //단지 번호 붙이기
 #include <iostream>
 #include <queue>
-#include <string>
-#include <vector>
+#include <string.h>
+// #include <vector>
 #include <algorithm>
 
 using namespace std;
@@ -18,21 +18,24 @@ void DFS(int st) {
 	visit[st] = 1;
 	for (int i = 1; i <= n; i++) {
 		if (line[st][i] == 1 && visit[i] == 0) DFS(i);
+		if(i == n) return;
 	}
 }
 
 void BFS(int st) {
 	q.push(st);
-	visit[st] = 1;
-	cout << st << " ";
+	// visit[st] = 1;
+	// cout << st << " ";
 	while (!q.empty()) {
 		int t = q.front();
+		visit[t] = 1;
+		cout << t << " ";
 		q.pop();
 		for (int i = 1; i <= n; i++) {
 			if (line[t][i] == 1 && visit[i] == 0) {
 				q.push(i);
 				visit[i] = 1;
-				cout << i << " ";
+				// cout << i << " ";
 			}
 		}
 	}
@@ -51,6 +54,7 @@ int main() {
 	
 	DFS(st);
 	cout << endl;
+	// memset(visit, 0, sizeof(visit));
 	for (int i = 1; i <= n; i++)visit[i] = 0;
 	BFS(st);
 

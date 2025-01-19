@@ -1,4 +1,4 @@
-//2630 색종이 만들기
+//2630 색종이 만들기 분할정복 재귀귀
 
 #include <iostream>
 #include <vector>

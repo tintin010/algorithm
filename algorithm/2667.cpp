@@ -1,4 +1,4 @@
-//단지 번호 붙이기
+//단지 번호 붙이기 실1 그래프 이론론
 #include <iostream>
 #include <queue>
 #include <string>

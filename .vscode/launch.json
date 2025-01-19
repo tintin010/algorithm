@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run C++ Program",  // 디버깅 환경 이름
+            "type": "cppdbg",          // C++ 디버거 유형
+            "request": "launch",       // 실행 모드
+            "program": "${fileDirname}/${fileBasenameNoExtension}.exe",  // 실행 파일 경로
+            "args": [],                // 실행 시 전달할 인자 (필요 없으면 빈 배열)
+            "stopAtEntry": false,      // 프로그램 시작 시 멈추지 않음
+            "cwd": "${fileDirname}",   // 작업 디렉토리
+            "environment": [],         // 환경 변수
+            "externalConsole": true,   // 외부 콘솔에서 실행
+            "MIMode": "gdb",           // gdb 사용
+            "miDebuggerPath": "C:\\MinGW\\mingw64\\bin\\gdb.exe",  // gdb.exe 경로
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "build"   // 실행 전에 build 작업 수행
+        }
+    ]
+}
