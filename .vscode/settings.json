@@ -3,6 +3,9 @@
         "string": "cpp",
         "queue": "cpp",
         "algorithm": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "istream": "cpp",
+        "tuple": "cpp",
+        "stack": "cpp"
     }
 }

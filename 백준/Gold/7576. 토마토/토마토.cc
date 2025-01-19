@@ -18,7 +18,7 @@ int main(void) {
 	int count = 0;
 	for (int i = 1; i <= col; i++) {
 		for (int j = 1; j <= row; j++) {
-			if (map[i][j] == 1) {
+			if (map[i][j] == 1) {	//익은 토마토라면면
 				q.push(make_pair(i, j));
 			}
 		}

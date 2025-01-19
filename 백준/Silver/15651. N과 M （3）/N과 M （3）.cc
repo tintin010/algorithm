@@ -14,14 +14,8 @@ void dfs(int k) {
 	}
 	else {
 		for (int i = 1; i <= n; i++) {
-			//if (visit[i] == 0) {
-				//visit[i] = 1;
 			arr[k] = i;
-			//cout << "num : " << num  << endl;
-			//cout << "k : " << k << endl << endl;
 			dfs(k + 1);
-			//visit[i] = 0;
-		//}
 		}
 	}
 }

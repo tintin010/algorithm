@@ -9,7 +9,7 @@ queue <pair<int, int>> q;
 int main(void) {
 	int a, b = 0;
 	cin >> a >> b;
-	cin.ignore();
+	// cin.ignore();
 	for (int i = 1; i <= a; i++) {
 		string str;
 		cin >> str;
@@ -25,7 +25,6 @@ int main(void) {
 		int size = q.size();
 		int c = q.front().first;	//col
 		int r = q.front().second;	//row
-
 
 		q.pop();
 
@@ -43,18 +42,18 @@ int main(void) {
 				break;
 			}
 		}
-		if ((0 < c - 1) && (visited[c-1][r]) == 1) {//상
+		if ((0 < c - 1) && (visited[c - 1][r]) == 1) {//상
 			(visited[c - 1][r]) = 0;
 			q.push(make_pair(c - 1, r));
-			map[c-1][r] = map[c][r] + 1;
+			map[c - 1][r] = map[c][r] + 1;
 			
 		}
 		if ((c + 1 <= a) && (visited[c + 1][r]) == 1) {//하
 			(visited[c + 1][r]) = 0;
 			q.push(make_pair(c + 1, r));
-			map[c+1][r] = map[c][r] + 1;
-			if (c + 1 == a && r == b) {
-				while (!q.empty())q.pop();
+			map[c + 1][r] = map[c][r] + 1;
+			if (c + 1 == a && r == b) {	// 미로 탈출 조건 확인
+				// while (!q.empty())q.pop();
 				break;
 			}
 		}
