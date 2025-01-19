@@ -14,9 +14,8 @@ void FUNC(int num, int k) {
 	}
 	else {
 		for (int i = num; i <= n; i++) {
-
-				arr[k] = i;
-				FUNC(i, k + 1);
+			arr[k] = i;
+			FUNC(i, k + 1);
 		}
 	}
 }
