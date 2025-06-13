@@ -1,30 +1,33 @@
-//15649 n과 m
-
 #include <iostream>
-#define MAX 9
-using namespace std;
-int n, m;
-int arr[MAX],visit[MAX];
 
-void dfs(int k) {
-	if (k == m) {
-		for (int i = 0; i < m; i++) cout << arr[i] << " ";
-		cout << '\n';
-		return;
-	}
-	else {
-		for (int i = 1; i <= n; i++) {
-			if (visit[i] == 0) {
-				visit[i] = 1;
-				arr[k] = i;
-				dfs(k + 1);
-				visit[i] = 0;
-			}
-		}
-	}
+using namespace std;
+
+int arr[9];
+int res[9];
+int n, m;
+
+void calc(int a){
+    if(a == m){
+        for(int i = 0; i < m; i++) cout << res[i] << " ";
+        cout << '\n';
+    }else{
+        for(int i = 1; i <= n; i++){
+            if(arr[i] == 0){
+                arr[i] = 1;
+                res[a] = i;
+                calc(a + 1);
+                arr[i] = 0;
+            }
+        }
+    }
 }
 
-int main() {
-	cin >> n >> m;
-	dfs(0);
+int main(){
+
+    cin >> n >> m;
+    for(int i = 1; i < 9; i++){
+        arr[i] = 0;
+        res[i] = 0;
+    }
+    calc(0);
 }
