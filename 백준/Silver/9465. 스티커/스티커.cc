@@ -1,38 +1,33 @@
 #include <iostream>
-#include <vector>
 #include <algorithm>
-#include <stack>
 
 using namespace std;
-const int M = 100000;
-int N, value[2][M], dp[M][3];
-int st(int n, int sta) {
-	if (n == N) return 0;
-	if (dp[n][sta] != -1)return dp[n][sta];
 
-	int res = st(n + 1, 0);
-	if (sta != 1)res = max(res, st(n + 1, 1) + value[0][n]);
-	if (sta != 2)res = max(res, st(n + 1, 2) + value[1][n]);
+int main(){
+    int arr[2][100001];
+    int res[2][100001];
+    int tc, n;
+    cin >> tc;
+    for(int i = 0; i < tc; i++){
+        cin >> n;
+        for(int j = 0; j < 2; j++){
+            for(int k = 0; k < n; k++){
+                cin >> arr[j][k];
+                res[j][k] = 0;
+            }
+        }
+        res[0][0] = arr[0][0];
+        res[1][0] = arr[1][0];
 
-	dp[n][sta] = res;
-	return res;
-}
+        res[0][1] = arr[1][0] + arr[0][1];
+        res[1][1] = arr[0][0] + arr[1][1];
 
+        for(int j = 2; j < n; j++){
+            res[0][j] = max(res[1][j - 1] + arr[0][j], res[1][j - 2] + arr[0][j]);
+            res[1][j] = max(res[0][j - 1] + arr[1][j], res[0][j - 2] + arr[1][j]);
+        }
 
-int main() {
-	int T;
-	cin >> T;
-	for (int t = 0; t < T; t++) {
-		cin >> N;
-		for (int i = 0; i < 2; i++) {
-			for (int j = 0; j < N; j++) {
-				cin >> value[i][j];
-			}
-		}
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < 3; j++)
-				dp[i][j] = -1;
-		}
-		cout << st(0, 0) << endl;
-	}
+        int answer = max(res[0][n - 1], res[1][n - 1]);
+        cout << answer << '\n';
+    }
 }
