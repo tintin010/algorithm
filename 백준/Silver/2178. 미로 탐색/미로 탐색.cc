@@ -1,62 +1,54 @@
 #include <iostream>
 #include <queue>
+#include <string>
+
 using namespace std;
 
-int visited[102][102];
-int map[102][102];
+int dx[4] = {1, -1, 0, 0};
+int dy[4] = {0, 0, -1, 1};
+int arr[101][101];
+int visited[101][101];
+int answer = 0;
+int n, m;
 queue <pair<int, int>> q;
 
-int main(void) {
-	int a, b = 0;
-	cin >> a >> b;
-	// cin.ignore();
-	for (int i = 1; i <= a; i++) {
-		string str;
-		cin >> str;
-		for (int j = 1; j <= b; j++) {
-			
-			visited[i][j] = str[j - 1] - '0';
-		}
-	}
-	q.push(make_pair(1, 1));
-	visited[1][1] = 0;
-	map[1][1] = 1;
-	while (!q.empty()) {
-		int size = q.size();
-		int c = q.front().first;	//col
-		int r = q.front().second;	//row
 
-		q.pop();
+void bfs(int i, int j){
+    visited[i][j] = 1;
+    q.push({i, j});
 
-		if ((0 < r - 1) && (visited[c][r - 1]) == 1) {//좌
-			(visited[c][r - 1]) = 0;
-			q.push(make_pair(c, r - 1));
-			map[c][r - 1] = map[c][r] + 1;
-		}
-		if ((r + 1 <= b) && (visited[c][r + 1]) == 1) {//우
-			(visited[c][r + 1]) = 0;
-			q.push(make_pair(c, r + 1));
-			map[c][r + 1] = map[c][r] + 1;
-			if (c == a && r + 1 == b) {
-				while (!q.empty())q.pop();
-				break;
-			}
-		}
-		if ((0 < c - 1) && (visited[c - 1][r]) == 1) {//상
-			(visited[c - 1][r]) = 0;
-			q.push(make_pair(c - 1, r));
-			map[c - 1][r] = map[c][r] + 1;
-			
-		}
-		if ((c + 1 <= a) && (visited[c + 1][r]) == 1) {//하
-			(visited[c + 1][r]) = 0;
-			q.push(make_pair(c + 1, r));
-			map[c + 1][r] = map[c][r] + 1;
-			if (c + 1 == a && r == b) {	// 미로 탈출 조건 확인
-				// while (!q.empty())q.pop();
-				break;
-			}
-		}
-	}
-	cout << map[a][b];
+    while(q.size()){
+        int x = q.front().first;
+        int y = q.front().second;
+
+        if(x == (n - 1) && y == (m - 1)){
+            cout << visited[x][y] << '\n';
+            return;
+        }
+
+        q.pop();
+        for(int k = 0; k < 4; k++){
+            int cx = dx[k] + x;
+            int cy = dy[k] + y;
+            if(cx < 0 || cx >= n || cy < 0 || cy >= m || visited[cx][cy] >= 1 || arr[cx][cy] == 0) continue;
+
+            visited[cx][cy] = visited[x][y] + 1;
+            q.push({cx, cy});
+        }
+    }
+}
+
+int main(){
+    cin >> n >> m;
+
+    for(int i = 0; i < n; i++){
+        string str;
+        cin >>str;
+        for(int j = 0; j < m; j++){
+            arr[i][j] = str[j] - '0';
+        }
+    }
+    for(int i = 0; i < n; i++) for(int j = 0; j < m; j++) visited[i][j] = 0;
+    bfs(0, 0);
+    return 0;
 }
