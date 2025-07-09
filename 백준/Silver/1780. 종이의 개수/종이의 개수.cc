@@ -8,13 +8,7 @@ int ans[3];
 
 void cut(int x, int y, int a){
     
-    if(a == 1){
-        int t = arr[x][y];
-        if(t == -1) ans[0]++;
-        else if(t == 0) ans[1]++;
-        else if(t == 1) ans[2]++;
-        return;
-    }
+
 
     int t = arr[x][y];
     int flag = 1;
