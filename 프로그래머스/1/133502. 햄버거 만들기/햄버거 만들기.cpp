@@ -6,9 +6,10 @@ using namespace std;
 
 int solution(vector<int> ingredient) {
     int answer = 0;
-    vector <int> arr = {0};
+    vector <int> arr;
+    arr.push_back(ingredient[0]);
     
-    for(int i = 0; i < ingredient.size(); i++){
+    for(int i = 1; i < ingredient.size(); i++){
         if(arr.back() == 1 && ingredient[i] == 2) arr.back() = 12;
         else if(arr.back() == 12 && ingredient[i] == 3) arr.back() = 123;
         else if(arr.back() == 123 && ingredient[i] == 1){
